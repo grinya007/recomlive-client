@@ -1,4 +1,5 @@
 from select import select
+from warnings import warn
 import socket
 
 class Client(object):
@@ -33,7 +34,10 @@ class Client(object):
         if sent and self._is_ready():
             response = self._recv()
             if len(response) > 0:
-                return response.split(',')
+                res = response.split(',')
+                if res[0] == 'OK':
+                    return res[1:]
+                warn('Received error response: {}'.format(res[0]))
         return []
 
     def _send(self, msg):
