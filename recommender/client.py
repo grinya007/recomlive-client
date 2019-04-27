@@ -28,7 +28,7 @@ class Client(object):
         return self._call('PH', '', pid, True)
 
     def _call(self, method, did, pid, need_response):
-        sent = self._send(','.join([method, did, pid]))
+        sent = self._send(','.join([method, str(did), str(pid)]))
         if not need_response:
             return sent
         if sent and self._is_ready():
