@@ -7,9 +7,8 @@ visits = 0
 tries = 0
 guesses = 0
 
-# Assuming, you've started Recom.live server
-# on this host machine and left default port
-c = Client('localhost', 5005)
+host, port = sys.argv[1].split(':')
+c = Client(host, int(port))
 
 # Pour document_id,person_id into this script
 for row in sys.stdin:
